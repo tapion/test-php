@@ -5,7 +5,7 @@ use Phalcon\Mvc\View;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Url as UrlProvider;
-use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
+use Phalcon\Db\Adapter\Pdo\Postgresql as DbAdapter;
 
 try {
 
@@ -15,6 +15,16 @@ try {
         '../app/controllers/',
         '../app/models/'
     ))->register();
+
+    // Setup the database service
+        $di->set('db', function () {
+            return new DbAdapter(array(
+                "host"     => "pellefant-01.db.elephantsql.com",
+                "username" => "yxlluzxv",
+                "password" => "XlspU6IwYJrlKnn9drdaRfpRv2PjyFR5",
+                "dbname"   => "yxlluzxv"
+            ));
+        });
 
     // Create a DI
     $di = new FactoryDefault();
